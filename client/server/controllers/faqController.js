@@ -34,4 +34,5 @@ async function getFAQ(req, res) {
 }
 export default {
   submitQuestion,
+  getFAQ,
 };

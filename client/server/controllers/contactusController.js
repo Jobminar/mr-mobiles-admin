@@ -20,7 +20,7 @@ const submitContactForm = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-const getContactMessages = async (req, res) => {
+const getContactMessages = async (_req, res) => {
   try {
     // Fetch all contact messages from the database
     const contactMessages = await Contact.find();
