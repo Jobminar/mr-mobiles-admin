@@ -68,5 +68,5 @@ router.post("/faq", faqController.submitQuestion);
 router.get("/get-faq", faqController.getFAQ);
 //Submit Contact form
 router.post("/contact", ContactusController.submitContactForm);
-router.get("/get-contact-messages", contactController.getContactMessages);
+router.get("/get-contact-messages", ContactusController.getContactMessages);
 export default router;
