@@ -1,29 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Assuming you have the user object in sessionStorage
-  const user = JSON.parse(sessionStorage.getItem("user"));
-
-  // Get the email from sessionStorage user object
-  const userEmail = user ? user.email : "";
-
-  // Call the API to get the serviceId based on the email
-  fetch(`http://localhost:8083/api/customer/serviceId/${userEmail}`)
-    .then((response) => {
-      console.log("API Response:", response);
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Data:", data);
-
-      // Display the serviceId in the paragraph tag
-      const resultParagraph = document.getElementById("serviceIdPrint");
-      resultParagraph.textContent = `Service ID: ${data.serviceId}`;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // Handle error if necessary
-    });
-});
-
 function getDetails(e) {
   e.preventDefault();
   const serviceID = document.getElementById("serviceId").value;

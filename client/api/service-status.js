@@ -39,7 +39,6 @@ function fetchAndRenderData(startDate, endDate) {
 
         const row = document.createElement("tr");
         row.innerHTML = `
-        <td>${customer.serviceId}</td>
           <td>${customer.name}</td>
           <td>${customer.mobile}</td>
           <td>${customer.email}</td>
