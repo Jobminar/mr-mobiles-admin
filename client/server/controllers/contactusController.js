@@ -20,4 +20,17 @@ const submitContactForm = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-export default { submitContactForm };
+const getContactMessages = async (req, res) => {
+  try {
+    // Fetch all contact messages from the database
+    const contactMessages = await Contact.find();
+
+    // Return the contact messages as a response
+    res.status(200).json({ contactMessages });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export default { submitContactForm, getContactMessages };

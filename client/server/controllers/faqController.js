@@ -20,6 +20,18 @@ function submitQuestion(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+async function getFAQ(req, res) {
+  try {
+    // Fetch all FAQs from the database
+    const faqs = await Faq.find();
+
+    // Return the FAQs as a response
+    res.status(200).json({ faqs });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
 export default {
   submitQuestion,
 };

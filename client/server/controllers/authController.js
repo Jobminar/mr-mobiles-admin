@@ -124,9 +124,22 @@ const resetPasswordController = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    // Fetch all users from the database
+    const users = await User.find({}, { password: 0 }); // Exclude the password field
+
+    // Return the users as a response
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 export default {
   registerController,
   loginController,
   updatePasswordController,
   resetPasswordController,
+  getAllUsers,
 };

@@ -7,6 +7,7 @@ import customerController from "../controllers/customerController.js";
 import serviceBookingController from "../controllers/serviceBookingController.js";
 import faqController from "../controllers/faqController.js";
 import ContactusController from "../controllers/contactusController.js";
+
 // Admin routes
 router.get(
   "/stocks",
@@ -60,9 +61,12 @@ router.post("/update-password", authController.updatePasswordController);
 router.post("/register", authController.registerController);
 router.post("/login", authController.loginController);
 router.post("/reset-password", authController.resetPasswordController);
+router.get("/get-all-users", authController.getAllUsers);
 // POST request to book a service
 router.post("/book-service", serviceBookingController.bookService);
 router.post("/faq", faqController.submitQuestion);
+router.get("/get-faq", faqController.getFAQ);
 //Submit Contact form
 router.post("/contact", ContactusController.submitContactForm);
+router.get("/get-contact-messages", contactController.getContactMessages);
 export default router;
