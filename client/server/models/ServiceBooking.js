@@ -6,7 +6,7 @@ const serviceBookingSchema = new Schema({
   serviceType: { type: String, required: true },
   deviceName: { type: String, required: true },
   deviceType: { type: String, required: true },
-  make: { type: Number, required: true },
+  make: { type: String, required: true },
   itemModel: { type: String, required: true },
   customerName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
