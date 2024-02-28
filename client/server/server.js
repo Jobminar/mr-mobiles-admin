@@ -1,6 +1,6 @@
 import express, { json } from "express";
 import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { dirname, resolve } from "path";
 import mongoose from "mongoose";
 import { createTransport } from "nodemailer";
 import Subscriber from "./models/Subscriber.js";
@@ -76,7 +76,7 @@ app.post("/contact-us", (req, res) => {
   // Email Message
   const mailOptions = {
     from: `${email}`,
-    to: "elimillasrinivas@gmail.com",
+    to: "jobminarinfo@gmail.com",
     subject: "Contact Form Submission",
     html: `
       <h2>Contact Form Submission</h2>
@@ -105,7 +105,7 @@ app.post("/faq", (req, res) => {
   // Email Message
   const mailOptions = {
     from: `${email}`,
-    to: "elimillasrinivas@gmail.com",
+    to: "jobminarinfo@gmail.com",
     subject: "FAQ Form Submission",
     html: `
       <h2>FAQ Form Submission</h2>
@@ -134,7 +134,7 @@ app.post("/service-schedule", (req, res) => {
   // Email Message
   const mailOptions = {
     from: `${email}`,
-    to: "elimillasrinivas@gmail.com",
+    to: "jobminarinfo@gmail.com",
     subject: "Service Schedule Form Submission",
     html: `
       <h2>Service Schedule Form Submission</h2>
@@ -157,13 +157,17 @@ app.post("/service-schedule", (req, res) => {
 // Serve static files from the "public" directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use(express.static(path.join(__dirname, "public")));
+
+// Define the path to the public directory
+const publicDirectoryPath = resolve(__dirname, "../public");
+
+// Serve static files from the "public" directory
+app.use(express.static(publicDirectoryPath));
 
 // 404 Error Handler
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+  res.status(404).sendFile(path.join(publicDirectoryPath, "404.html"));
 });
-
 // Start the server
 const port = process.env.PORT || 5001;
 app.listen(port, () => {

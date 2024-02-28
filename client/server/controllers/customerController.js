@@ -3,24 +3,17 @@ import CustomerOnboarding from "../models/CustomerOnboarding.js";
 // const ExcelJS = require('exceljs');
 // const mailgunTransport = require('nodemailer-mailgun-transport');
 import { createTransport } from "nodemailer";
-
+import nodemailer from "nodemailer";
 // Create a Nodemailer transporter using Mailgun SMTP transport
-const transporter = createTransport(
-  // mailgunTransport({
-  //   auth: {
-  //     api_key: '61f9d09eb4d0fa0fdd995c929ce3e78c-262b213e-430930e6', // Replace with your Mailgun API key
-  //     domain: 'sandboxf15ad26e231547a3a3f009a154480958.mailgun.org', // Replace with your Mailgun domain
-  //   },
-  // })
-
-  {
-    service: "gmail",
-    auth: {
-      user: process.env.gmail,
-      pass: process.env.gmail_password,
-    },
-  }
-);
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // upgrade later with STARTTLS
+  auth: {
+    user: "jobminarinfo@gmail.com",
+    pass: "rpvn zvcr efap poue",
+  },
+});
 
 const sendStatusEmail = async (
   id,
@@ -65,7 +58,7 @@ const sendCustomerOnboardingEmail = async (
   // console.log(id,userEmail,status,mobilemodel,priceQuoted,advancePay,expectedDeliveryDate);
   try {
     const mailOptions = {
-      from: "elimillasrinivas@gmail.com",
+      from: "jobminarinfo@gmail.com",
       to: userEmail,
       subject: "Mr.Mobiles Services",
       html: `
@@ -293,6 +286,28 @@ const customerController = {
   //     res.status(500).json({ error: 'Internal server error' });
   //   }
   // },
+
+  getAllCustomerReports: async (req, res) => {
+    try {
+      // No need to check for startDate and endDate
+
+      // Empty query to fetch all records
+      const query = {};
+
+      // Select specific fields for the response
+      const selectFields =
+        "name mobile email mobileMake mobileModel imeiNumber reference issue priceQuoted advancePay registeredDate expectedDeliveryDate comments status";
+
+      // Fetch reports based on the query and selected fields
+      const reports = await find(query).select(selectFields);
+
+      // Respond with the fetched reports
+      res.json(reports);
+    } catch (error) {
+      // Handle any errors that may occur during the process
+      res.status(500).json({ error, message: "Internal server error" });
+    }
+  },
 };
 
 export default customerController;

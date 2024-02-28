@@ -47,6 +47,8 @@ router.delete(
 );
 router.get("/customer/reports", customerController.getCustomerReports);
 // router.get('/customer/reports/export', customerController.exportCustomerReports);
+router.get("/customer/Allreports", customerController.getAllCustomerReports);
+// Customer routes
 
 // Customer routes
 // router.post('/customer/requests', authController.authenticateToken, customerController.createRequest);
